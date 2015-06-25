@@ -19,3 +19,18 @@ get '/posts/:id' do
 	@post = Post.find("#{id}")
 	erb :show_post
 end
+
+get '/posts/:id/edit' do
+	id = params[:id]
+	@post = Post.find("#{id}")
+	erb :edit_post
+end
+
+post '/posts/:id' do
+	title = params[:title]
+	description = params[:description]
+	id = params[:id]
+	post = Post.find(id)
+	post.update(title: title, description: description)
+	redirect to("/posts/#{id}")
+end
