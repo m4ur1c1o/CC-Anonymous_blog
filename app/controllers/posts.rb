@@ -34,3 +34,9 @@ post '/posts/:id' do
 	post.update(title: title, description: description)
 	redirect to("/posts/#{id}")
 end
+
+post '/posts/:id/delete' do
+	id = params[:id]
+	post = Post.destroy(id)
+	redirect to ('/posts')
+end
